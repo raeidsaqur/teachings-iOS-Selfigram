@@ -19,7 +19,7 @@ class Post:PFObject, PFSubclassing {
     @NSManaged var comment:String
     
     
-    var likes: PFRelation! {
+    var likes: PFRelation<PFObject>! {
         return relation(forKey: "likes")
     }
     

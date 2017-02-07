@@ -22,9 +22,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Activity.registerSubclass()
         
         //https://dashboard.parse.com/apps/w5d1/settings/keys
+//        Parse.setApplicationId("TGT74MvbhaXV8xa8AJX9BDYA3auljov6hILvMAx3",
+//                               clientKey: "EzIXyy8MRkfrYnevOEZVSduol8WoGsvh8fP2Blvl")
         
-        Parse.setApplicationId("TGT74MvbhaXV8xa8AJX9BDYA3auljov6hILvMAx3",
-                               clientKey: "EzIXyy8MRkfrYnevOEZVSduol8WoGsvh8fP2Blvl")
+        
+        let configuration = ParseClientConfiguration { clientConfiguration in
+            clientConfiguration.applicationId = "5CDeHX2xNhW11QZXr9AvtBbEQY0lft4jpUuMFt9g"
+            clientConfiguration.server = "https://parse-server-ios-main.herokuapp.com/parse"
+            
+        }
+        Parse.initialize(with: configuration)
+        
         
         // MARK: - Toggle Creation
         //createPFTestObject()
