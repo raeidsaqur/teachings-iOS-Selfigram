@@ -26,9 +26,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //                               clientKey: "EzIXyy8MRkfrYnevOEZVSduol8WoGsvh8fP2Blvl")
         
         
+        
+        ///Source: https://docs.google.com/spreadsheets/d/1hBRyle189P6GNA8llTylm0mRz0IFAB6G4sDRL5RuXlk/edit#gid=874184789
+        /// app Name: ios-tor-pt-parse-server-ta
+        /// MasterKey: 6fe82051-4dea-4490-ba9f-d9a18803fb1c
+        /// app ID: 17ff1a2f-11c0-43e1-8bdd-1f4960bef808
+        /// server url: https://ios-tor-pt-parse-server-ta.herokuapp.com/parse
+        /// dashboard url: https://ios-tor-pt-parse-server-ta.herokuapp.com/dashboard
+        
         let configuration = ParseClientConfiguration { clientConfiguration in
-            clientConfiguration.applicationId = "5CDeHX2xNhW11QZXr9AvtBbEQY0lft4jpUuMFt9g"
-            clientConfiguration.server = "https://parse-server-ios-main.herokuapp.com/parse"
+            clientConfiguration.applicationId = "17ff1a2f-11c0-43e1-8bdd-1f4960bef808"
+            clientConfiguration.server = "https://ios-tor-pt-parse-server-ta.herokuapp.com/parse"
             
         }
         Parse.initialize(with: configuration)
@@ -38,8 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //createPFTestObject()
         //createPFTestObject2()
         
-        
-        //let user: PFUser = self.getUser("danny", password: "mathews", email: nil)
+
         let user: PFUser = self.getUser()
         
         user.signUpInBackground { (success, error) -> Void in
@@ -54,7 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
-//        createPostWithNoSubclassing()
+        createPostWithNoSubclassing()
         
         return true
     }
@@ -94,7 +101,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if success {
                 print("PostWithNoSC has been saved.")
             } else if (error != nil) {
-                print(error?.localizedDescription)
+                print(error?.localizedDescription as Any)
             }
         }
     }
@@ -112,8 +119,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
-    
-    
     func createPFTestObject() {
         let testObject = PFObject(className: "TestObject")
         testObject["foo"] = "bar"
