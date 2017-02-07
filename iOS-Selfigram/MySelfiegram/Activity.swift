@@ -11,7 +11,8 @@ import Parse
 class Activity:PFObject, PFSubclassing {
     
     private static var __once: () = {
-            self.registerSubclass()
+            //self.registerSubclass()
+            //PFSubclassing .registerSubclass()
         }()
     
     @NSManaged var type:String

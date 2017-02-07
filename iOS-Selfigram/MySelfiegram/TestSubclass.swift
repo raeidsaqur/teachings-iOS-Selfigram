@@ -14,7 +14,8 @@ import Parse
 class TestSubclass:PFObject, PFSubclassing {
     
     private static var __once: () = {
-            self.registerSubclass()
+            //self.registerSubclass()
+        
         }()
     
     @NSManaged var columnOne:String

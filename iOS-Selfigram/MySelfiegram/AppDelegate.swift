@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // MARK: - Toggle Creation
         //createPFTestObject()
-        createPFTestObject2()
+        //createPFTestObject2()
         
         
         //let user: PFUser = self.getUser("danny", password: "mathews", email: nil)
@@ -82,11 +82,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         postWithNoSC["coment"] = "This is a test comment"
 
-        postWithNoSC.saveInBackground { (success: Bool, error: NSError?) -> Void in
+        postWithNoSC.saveInBackground { (success: Bool, error: Error?) -> Void in
             if success {
                 print("PostWithNoSC has been saved.")
             } else if (error != nil) {
-                print(error?.description)
+                print(error?.localizedDescription)
             }
         }
     }
@@ -96,9 +96,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let testObject = PFObject(className: "TestObject2")
         testObject["foo"] = "bar"
-        testObject.saveInBackground { (success: Bool, error: NSError?) -> Void in
+        
+        testObject.saveInBackground { (success, error) in
             if success {
-                print("TestObject2 has been saved.")
+                print("TestObject2 has been saved")
             }
         }
     }
@@ -108,9 +109,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func createPFTestObject() {
         let testObject = PFObject(className: "TestObject")
         testObject["foo"] = "bar"
-        testObject.saveInBackground { (success: Bool, error: NSError?) -> Void in
+        
+        testObject.saveInBackground { (success, error) in
             if success {
-                print("Object has been saved.")
+                print("Object has been saved")
             }
         }
     }

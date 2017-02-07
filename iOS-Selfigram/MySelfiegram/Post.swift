@@ -11,7 +11,7 @@ import Parse
 class Post:PFObject, PFSubclassing {
     
     private static var __once: () = {
-            self.registerSubclass()
+            //self.registerSubclass()
         }()
     
     @NSManaged var image:PFFile
