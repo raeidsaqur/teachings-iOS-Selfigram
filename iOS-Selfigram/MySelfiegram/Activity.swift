@@ -12,7 +12,7 @@ class Activity:PFObject, PFSubclassing {
     
     private static var __once: () = {
             //self.registerSubclass()
-            //PFSubclassing .registerSubclass()
+            //Activity.registerSubclass()
         }()
     
     @NSManaged var type:String

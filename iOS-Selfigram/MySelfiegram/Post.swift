@@ -12,6 +12,8 @@ class Post:PFObject, PFSubclassing {
     
     private static var __once: () = {
             //self.registerSubclass()
+            //Post.registerSubclass()
+        
         }()
     
     @NSManaged var image:PFFile

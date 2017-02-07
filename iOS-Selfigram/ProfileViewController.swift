@@ -51,7 +51,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             // setting the compression quality to 90%
             if let imageData = UIImageJPEGRepresentation(image, 0.9),
                 let imageFile = PFFile(data: imageData),
-                let user = PFUser.current(){
+                let user = PFUser.current() {
                     
                     // avatarImage is a new column in our User table
                     user["avatarImage"] = imageFile
@@ -61,6 +61,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
                             let image = UIImage(data: imageData)
                             self.profileImageView.image = image
                             print("avatarImage successfully saved")
+                        } else {
+                            print(error?.localizedDescription as Any)
                         }
                     })
                     

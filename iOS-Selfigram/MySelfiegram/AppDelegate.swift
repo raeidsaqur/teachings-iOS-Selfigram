@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Post.registerSubclass()
         Activity.registerSubclass()
+        TestSubclass.registerSubclass()
         
         //https://dashboard.parse.com/apps/w5d1/settings/keys
 //        Parse.setApplicationId("TGT74MvbhaXV8xa8AJX9BDYA3auljov6hILvMAx3",
@@ -45,23 +46,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // MARK: - Toggle Creation
         //createPFTestObject()
         //createPFTestObject2()
-        
 
-        let user: PFUser = self.getUser()
-        
-        user.signUpInBackground { (success, error) -> Void in
-            if success {
-                print("successfully signuped a user")
-            }else {
-                PFUser.logInWithUsername(inBackground: user.username!, password: user.password!, block: { (user, error) -> Void in
-                    if let user = user {
-                        print("successfully logined in \(user)")
-                    }
-                })
+        //let user: PFUser = self.getUser()
+        if let _: PFUser = PFUser.current() {
+            //createPostWithNoSubclassing()
+            //createPFTestObject()
+            //createPFTestObject2()
+            
+            
+        } else {
+            let user:PFUser = self.getUser()
+            user.signUpInBackground { (success, error) -> Void in
+                if success {
+                    print("successfully signuped a user")
+                }else {
+                    PFUser.logInWithUsername(inBackground: user.username!, password: user.password!, block: { (user, error) -> Void in
+                        if let user = user {
+                            print("successfully logined in \(user)")
+                        }
+                    })
+                }
             }
         }
         
-        createPostWithNoSubclassing()
+        //createPostWithNoSubclassing()
         
         return true
     }
@@ -76,12 +84,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func getUser(_ username:String, password:String, email:String?) -> PFUser {
         
         print("\(#function)")
-        let user = PFUser()
-        user.username = username
-        user.password = password
-        user.email = email
+        var user = PFUser.current()
         
-        return user
+        if user == nil {
+            user = PFUser()
+            user?.username = username
+            user?.password = password
+            user?.email = email
+        }
+    
+        return user!
     }
     
     func createPostWithNoSubclassing() {

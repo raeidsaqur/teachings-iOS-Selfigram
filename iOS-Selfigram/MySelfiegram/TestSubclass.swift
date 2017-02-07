@@ -15,7 +15,7 @@ class TestSubclass:PFObject, PFSubclassing {
     
     private static var __once: () = {
             //self.registerSubclass()
-        
+            //TestSubclass.registerSubclass()
         }()
     
     @NSManaged var columnOne:String
