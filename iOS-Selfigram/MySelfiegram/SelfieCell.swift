@@ -26,7 +26,7 @@ class SelfieCell: UITableViewCell {
                 selfieImageView.image = nil
                 
                 let imageFile = post.image
-                imageFile.getDataInBackground { (data, error) -> Void in
+                imageFile?.getDataInBackground { (data, error) -> Void in
                     if let data = data {
                         let image = UIImage(data: data)
                         self.selfieImageView.image = image

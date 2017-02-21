@@ -18,8 +18,8 @@ class TestSubclass:PFObject, PFSubclassing {
             //TestSubclass.registerSubclass()
         }()
     
-    @NSManaged var columnOne:String
-    @NSManaged var columneTwo:String
+    @NSManaged var firstName:String
+    @NSManaged var lastName:String
     
     override class func initialize() {
         struct Static {
@@ -33,11 +33,11 @@ class TestSubclass:PFObject, PFSubclassing {
         return "TestSubclass"
     }
     
-    convenience init(c1:String , c2:String) {
+    convenience init(fname:String , lname:String) {
         
         self.init()
-        columnOne = c1
-        columneTwo = c2
+        firstName = fname
+        lastName = lname
     }
     
 }

@@ -15,18 +15,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication,
+                     didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         Post.registerSubclass()
         Activity.registerSubclass()
         TestSubclass.registerSubclass()
-        
-        //https://dashboard.parse.com/apps/w5d1/settings/keys
-//        Parse.setApplicationId("TGT74MvbhaXV8xa8AJX9BDYA3auljov6hILvMAx3",
-//                               clientKey: "EzIXyy8MRkfrYnevOEZVSduol8WoGsvh8fP2Blvl")
-        
-        
+    
         
         ///Source: https://docs.google.com/spreadsheets/d/1hBRyle189P6GNA8llTylm0mRz0IFAB6G4sDRL5RuXlk/edit#gid=874184789
         /// app Name: ios-tor-pt-parse-server-ta
@@ -48,8 +44,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //createPFTestObject2()
 
         //let user: PFUser = self.getUser()
-        if let _: PFUser = PFUser.current() {
+        
+        
+        
+        if let user: PFUser? = PFUser.current() {
+            
             //createPostWithNoSubclassing()
+            
+            createPostWithSubclassing()
             //createPFTestObject()
             //createPFTestObject2()
             
@@ -96,17 +98,60 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return user!
     }
     
+    func createPostWithSubclassing() {
+        print("createPostWithSubclassing");
+        
+        
+        
+        //let postWithSC = TestSubclass.init(fname: "FirstName", lname: "LastName")
+        
+        let postWithSC = Post.init(image: nil, user: PFUser.current()!, comment: "This is my 2nd post")
+        
+        postWithSC.saveInBackground { (success: Bool, error: Error?) -> Void in
+            if success {
+                print("PostWithSC has been saved.")
+            } else if (error != nil) {
+                print(error?.localizedDescription as Any)
+            }
+        }
+        
+        
+    }
+    
+    
+    
+    
+    
+    func createPostWithSubclassing2() {
+       print("createPostWithSubclassing");
+        
+        let postWithSC = TestSubclass.init(fname: "FirstName", lname: "LastName")
+        
+        postWithSC.firstName = "Raeid"
+    
+        postWithSC.lastName = "Saqur"
+        
+        postWithSC.saveInBackground { (success: Bool, error: Error?) -> Void in
+            if success {
+                print("PostWithSC has been saved.")
+            } else if (error != nil) {
+                print(error?.localizedDescription as Any)
+            }
+        }
+        
+        
+    }
     func createPostWithNoSubclassing() {
         print("createPostWithNoSubclassing");
         
     
-        let postWithNoSC = PFObject(className: "PostWithNoSC")
+        let postWithNoSC = PFObject(className: "PostWithNoSC2")
         //postWithNoSC["user"] = PFUser()
         postWithNoSC["usre"] = PFUser.current()
-//        postWithNoSC["image"] = "image"
+        //postWithNoSC["image"] = "image"
         
         postWithNoSC["image"] = 2
-        
+        postWithNoSC["age"] = "haha"
         postWithNoSC["coment"] = "This is a test comment"
 
         postWithNoSC.saveInBackground { (success: Bool, error: Error?) -> Void in
